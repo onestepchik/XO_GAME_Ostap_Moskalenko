@@ -40,9 +40,6 @@ def makeTurn(x, y, symbol):
         game_Map[makeKey(x, y)] = symbol
         showGameField()
         return True
-    elif ((x not in range(1, 3) or (y not in range(1, 3) or (symbol not in ['X', '0'])))):
-        print("Некорректный ввод данных для хода")
-        return False
     else:
         print("В данном месте уже сделан ход, походите в другое место")
         return False
@@ -82,6 +79,11 @@ def startGame():
         print("ХОДИТ ИГРОК ", getTurnSide())
         x = input("Введите номер ряда (1-3) ")
         y = input("Введите номер столбца (1-3) ")
+
+        if ((x not in range(1, 3) or (y not in range(1, 3)))):
+            print("Некорректный ввод данных для хода")
+            continue
+
         if makeTurn(int(x), int(y), getTurnSide()):
 
             if (checkVictory()):
